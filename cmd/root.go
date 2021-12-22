@@ -111,6 +111,9 @@ func getTemplate(moulConfig *viper.Viper, dir string) string {
 		avatarName = filepath.Base(avatar[0])
 	}
 
+	photoOrder := moulConfig.Get("style.photo_order")
+	isPhotoOrderedAscending := photoOrder != "descending"
+
 	ctx.Set("md", text.Markdown)
 	ctx.Set("between", iterators.Between)
 	ctx.Set("toString", func(i int) string {
@@ -119,7 +122,9 @@ func getTemplate(moulConfig *viper.Viper, dir string) string {
 	ctx.Set("joinPath", func(path, i string) string {
 		return filepath.Join(path, i)
 	})
-	ctx.Set("getPhotos", internal.GetPhotoDev)
+	ctx.Set("getPhotos", func(dir, slugName string) string {
+		return internal.GetPhotoDev(dir, slugName, isPhotoOrderedAscending)
+	})
 	ctx.Set("isProd", false)
 	ctx.Set("version", Version)
 	ctx.Set("base", "/")

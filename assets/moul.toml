@@ -6,6 +6,7 @@ ga_measurement_id = ""
 theme = "system-preference"
 cover = "center"
 content = "left"
+photo_order = "ascending"
 
 [profile]
 name = "Moul"

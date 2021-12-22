@@ -23,6 +23,7 @@ favicon = "true"
 theme = "system-preference" # possible value "system-preference | dark | light"
 cover = "center" # possible value "left | center | right | none"
 content = "left" # possible value "left | center | right"
+photo_order = "ascending" # possible value "ascending | descending"
 
 # Profile information
 [profile]

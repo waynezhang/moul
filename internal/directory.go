@@ -5,6 +5,7 @@ import (
 	"math"
 	"os"
 	"path/filepath"
+	"sort"
 	"strings"
 
 	"github.com/fatih/color"
@@ -55,10 +56,13 @@ func RemoveAll(path string) error {
 }
 
 // GetPhotoDev func
-func GetPhotoDev(dir, slugName string) string {
+func GetPhotoDev(dir, slugName string, ascending bool) string {
 	sectionPath := filepath.Join(".", "photos", dir)
 	if _, err := os.Stat(sectionPath); !os.IsNotExist(err) {
 		sectionPhotos := GetPhotos(sectionPath)
+		if !ascending {
+			sort.Sort(sort.Reverse(sort.StringSlice(sectionPhotos)))
+		}
 		sc := []Collection{}
 		for _, p := range sectionPhotos {
 			widthHd, heightHd := GetPhotoDimension(p)
@@ -83,7 +87,7 @@ func GetPhotoDev(dir, slugName string) string {
 }
 
 // GetPhotoProd func
-func GetPhotoProd(dir, slugName string) string {
+func GetPhotoProd(dir, slugName string, ascending bool) string {
 	sectionPath := filepath.Join(".", "photos", dir)
 	if _, err := os.Stat(sectionPath); !os.IsNotExist(err) {
 		Resize(sectionPath, slugName, slug.Make(dir), []int{2048, 750})
@@ -93,6 +97,9 @@ func GetPhotoProd(dir, slugName string) string {
 		config.SetConfigName(slug.Make(dir))
 		config.ReadInConfig()
 		sectionPhotos := GetPhotos(sectionPath)
+		if !ascending {
+			sort.Sort(sort.Reverse(sort.StringSlice(sectionPhotos)))
+		}
 		sc := []Collection{}
 
 		for _, photo := range sectionPhotos {

@@ -129,6 +129,9 @@ var Export = &cobra.Command{
 			"sqip": inlineAvatar,
 		}
 
+		photoOrder := moulConfig.Get("style.photo_order")
+		isPhotoOrderedAscending := photoOrder != "descending"
+
 		t := internal.Template()
 		ctx := plush.NewContext()
 		ctx.Set("md", text.Markdown)
@@ -139,7 +142,9 @@ var Export = &cobra.Command{
 		ctx.Set("joinPath", func(path, i string) string {
 			return filepath.Join(path, i)
 		})
-		ctx.Set("getPhotos", internal.GetPhotoProd)
+		ctx.Set("getPhotos", func(dir, slugName string) string {
+			return internal.GetPhotoProd(dir, slugName, isPhotoOrderedAscending)
+		})
 
 		ctx.Set("isProd", true)
 		ctx.Set("version", Version)
