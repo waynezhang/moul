@@ -386,6 +386,13 @@ func Template() string {
             <h2><%= profile["name"] %></h2>
             <p><%= profile["bio"] %></p>
             <div class="social">
+                <%= if (len(social["homepage"]) > 0 ) { %>
+                    <a href="<%= social["homepage"] %>">
+                        <svg width="24" height="24" viewBox="0 0 24 24">
+                            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline>
+                        </svg>
+                    </a>
+                <% } %>
                 <%= if (len(social["twitter"]) > 0 ) { %>
                     <a href="https://twitter.com/<%= social["twitter"] %>">
                         <svg width="24" height="24" viewBox="0 0 24 24">

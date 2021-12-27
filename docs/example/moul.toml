@@ -11,6 +11,7 @@ name = "Moul"
 bio = "The minimalist publishing tool for photographers"
 
 [social]
+homepage = ""
 twitter = ""
 github = "moulco"
 instagram = "moul.co"

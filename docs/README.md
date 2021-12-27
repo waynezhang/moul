@@ -32,6 +32,7 @@ bio = "Internetrovert • Indie Dev • Minimalist"
 
 # Social media handle
 [social]
+homepage = ""
 twitter = ""
 github = ""
 instagram = ""

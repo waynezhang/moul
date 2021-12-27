@@ -13,6 +13,7 @@ name = "Moul"
 bio = "The minimalist publishing tool for photographers"
 
 [social]
+homepage = ""
 twitter = "moul_co"
 github = "moulco/moul"
 instagram = "moul.co"
